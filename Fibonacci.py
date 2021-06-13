@@ -66,7 +66,9 @@ def fibonacci_iter(n):
         return b
 
 
-#dynamic programming using dictionary    
+#dynamic programming using dictionary  
+d = {0:0, 1:1, 2:1}
+  
 def fib_efficient(n, d):
     if n in d:
         return d[n]
@@ -75,5 +77,4 @@ def fib_efficient(n, d):
         d[n] = ans
         return ans
     
-d = {0:0, 1:1, 2:1}
 print(fib_efficient(9, d))
