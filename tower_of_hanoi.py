@@ -6,17 +6,24 @@ Created on Sun Jun 13 20:43:29 2021
 """
 
 #printing each move
-def print_move(fr, to):
-    print("Move from "+str(fr)+" to "+str(to))
+def print_move(ring, fr, to):
+    print("Move ring "+str(ring)+" from "+str(fr)+" to "+str(to))
 
 #function containing recursive calls to move all the rings from one spike to another
-def move_rings(n, fr, to, spare):
+def move_rings(rings, n, fr, to, spare):
     if n == 1:
-        print_move(fr, to)
+        if type(rings) == list:
+            rings = rings[0]
+        print_move(rings, fr, to)
     else:
-        move_rings(n-1, fr, spare, to)
-        move_rings(1, fr, to, spare)
-        move_rings(n-1, spare, to, fr)
+        move_rings(rings[0:n-1], n-1, fr, spare, to)
+        move_rings(rings[-1], 1, fr, to, spare)
+        move_rings(rings[0:n-1], n-1, spare, to, fr)
+
+def tower_of_hanoi(rings, n, fr, to, spare):
+    move_rings(rings, n, fr, to, spare)
+    return "Moved all the rings from "+str(fr)+" to "+str(to)
+
 
 #function call
-print(move_rings(4, 'P1', 'P2', 'P3'))
+print(tower_of_hanoi([1,2,3,4], 4, 'P1', 'P2', 'P3'))
