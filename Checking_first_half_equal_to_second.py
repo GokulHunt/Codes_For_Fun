@@ -22,4 +22,3 @@ def check_lhs_rhs(ip):
             print("NO")
     
 check_lhs_rhs('1222006')
-    
